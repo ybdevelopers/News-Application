@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ybdevelopers.newsapplication.R
+import com.ybdevelopers.newsapplication.adapters.NewsAdapter
 import com.ybdevelopers.newsapplication.data.remote.RetrofitHelper
 import com.ybdevelopers.newsapplication.data.remote.api.APIInterface
 import com.ybdevelopers.newsapplication.databinding.FragmentNewsListBinding
@@ -19,6 +20,7 @@ import com.ybdevelopers.newsapplication.viewModel.NewsViewModelFactory
 class NewsListFragment : Fragment() {
     private lateinit var binding: FragmentNewsListBinding
     private lateinit var newsViewModel: NewsViewModel
+    private val newsAdapter by lazy { NewsAdapter(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,10 @@ class NewsListFragment : Fragment() {
             NewsViewModelFactory(apiRepository, getString(R.string.API_KEY))
         )[NewsViewModel::class.java]
         newsViewModel.newsList.observe(viewLifecycleOwner, {
+            for (element in it.articles) {
+                newsAdapter.addItem(element)
+            }
+            binding.rvNewsList.adapter = newsAdapter
             Log.e("API Response:", "${it.articles.toString()}")
         })
     }
