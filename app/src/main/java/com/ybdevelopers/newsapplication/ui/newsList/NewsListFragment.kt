@@ -1,7 +1,6 @@
 package com.ybdevelopers.newsapplication.ui.newsList
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +16,11 @@ import com.ybdevelopers.newsapplication.repository.APIRepository
 import com.ybdevelopers.newsapplication.viewModel.NewsViewModel
 import com.ybdevelopers.newsapplication.viewModel.NewsViewModelFactory
 
+
 class NewsListFragment : Fragment() {
     private lateinit var binding: FragmentNewsListBinding
     private lateinit var newsViewModel: NewsViewModel
-    private val newsAdapter by lazy { NewsAdapter(requireContext()) }
+    private val newsAdapter by lazy { NewsAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +39,10 @@ class NewsListFragment : Fragment() {
             NewsViewModelFactory(apiRepository, getString(R.string.API_KEY))
         )[NewsViewModel::class.java]
         newsViewModel.newsList.observe(viewLifecycleOwner, {
-            for (element in it.articles) {
-                newsAdapter.addItem(element)
+            for (i in it.articles.indices) {
+                it?.articles?.get(i)?.let { it1 -> newsAdapter.addItem(it1) }
             }
             binding.rvNewsList.adapter = newsAdapter
-            Log.e("API Response:", "${it.articles.toString()}")
         })
     }
 }

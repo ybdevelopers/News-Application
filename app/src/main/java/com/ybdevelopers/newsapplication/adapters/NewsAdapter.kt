@@ -3,12 +3,11 @@ package com.ybdevelopers.newsapplication.adapters
 import android.content.Context
 import androidx.recyclerview.widget.SortedList
 import androidx.recyclerview.widget.SortedListAdapterCallback
-import com.bumptech.glide.Glide
 import com.ybdevelopers.newsapplication.R
 import com.ybdevelopers.newsapplication.databinding.ItemNewsListBinding
 import com.ybdevelopers.newsapplication.model.Article
 
-class NewsAdapter(private val context: Context) :
+class NewsAdapter :
     BaseRecyclerViewAdapter<Article, ItemNewsListBinding>() {
     override fun getLayout() = R.layout.item_news_list
 
@@ -17,8 +16,6 @@ class NewsAdapter(private val context: Context) :
         position: Int
     ) {
         binding.apply {
-            if (item?.urlToImage!!.isNotEmpty())
-                Glide.with(context).load(item.urlToImage).into(ivNews)
             article = item
         }
     }

@@ -6,6 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface APIInterface {
-    @GET("v2/everything?domains=wsj.com&apiKey=6f1db500af9b43f8b03d660789d2721c")
-    suspend fun getAllNews(): Response<NewsListResponse>
+    @GET("v2/everything")
+    suspend fun getAllNews(
+        @Query("q") q: String,
+        @Query("apiKey") apiKey: String
+    ): Response<NewsListResponse>
+
 }

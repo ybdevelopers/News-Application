@@ -12,7 +12,7 @@ class APIRepository(private val apiInterface: APIInterface) {
     val newsListResponse: LiveData<NewsListResponse> get() = _newsListResponse
 
     suspend fun getNews(apiKey: String) {
-        val response = apiInterface.getAllNews()
+        val response = apiInterface.getAllNews("latest",apiKey)
         if (response?.body() != null) {
             _newsListResponse.postValue(response.body())
         }
