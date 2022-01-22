@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/newsListFragment"
-        android:name="com.ybdevelopers.newsapplication.NewsListFragment"
+        android:name="com.ybdevelopers.newsapplication.ui.newsList.NewsListFragment"
         android:label="fragment_news_list"
         tools:layout="@layout/fragment_news_list" />
     <fragment
         android:id="@+id/newsDetailFragment"
-        android:name="com.ybdevelopers.newsapplication.NewsDetailFragment"
+        android:name="com.ybdevelopers.newsapplication.ui.newsDetail.NewsDetailFragment"
         android:label="fragment_news_detail"
         tools:layout="@layout/fragment_news_detail" />
 </navigation>
