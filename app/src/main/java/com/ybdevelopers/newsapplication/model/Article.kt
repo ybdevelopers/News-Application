@@ -1,6 +1,10 @@
 package com.ybdevelopers.newsapplication.model
 
-data class Article(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+class Article(
     val author: String,
     val content: String,
     val description: String,
@@ -9,4 +13,4 @@ data class Article(
     val title: String,
     val url: String,
     val urlToImage: String
-)
+) : Parcelable

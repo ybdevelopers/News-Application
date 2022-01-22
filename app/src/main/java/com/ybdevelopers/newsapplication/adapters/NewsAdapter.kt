@@ -1,6 +1,5 @@
 package com.ybdevelopers.newsapplication.adapters
 
-import android.content.Context
 import androidx.recyclerview.widget.SortedList
 import androidx.recyclerview.widget.SortedListAdapterCallback
 import com.ybdevelopers.newsapplication.R
@@ -16,6 +15,9 @@ class NewsAdapter :
         position: Int
     ) {
         binding.apply {
+            root.setOnClickListener {
+                item?.let { it1 -> listener?.invoke(it, it1, position) }
+            }
             article = item
         }
     }

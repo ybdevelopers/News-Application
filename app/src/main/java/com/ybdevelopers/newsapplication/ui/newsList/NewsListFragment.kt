@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.ybdevelopers.newsapplication.R
 import com.ybdevelopers.newsapplication.adapters.NewsAdapter
 import com.ybdevelopers.newsapplication.data.remote.RetrofitHelper
@@ -44,5 +45,10 @@ class NewsListFragment : Fragment() {
             }
             binding.rvNewsList.adapter = newsAdapter
         })
+
+        newsAdapter.listener = { _, newsPositionData, _ ->
+            val actionData = NewsListFragmentDirections.actionNewsListFragmentToNewsDetailFragment(newsPositionData)
+            findNavController().navigate(actionData)
+        }
     }
 }
