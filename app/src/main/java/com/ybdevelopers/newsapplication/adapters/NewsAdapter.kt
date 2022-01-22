@@ -18,7 +18,12 @@ class NewsAdapter :
             root.setOnClickListener {
                 item?.let { it1 -> listener?.invoke(it, it1, position) }
             }
-            article = item
+            if ((position + 1) % 6 == 0) {
+                item?.urlToImage = ""
+                article = item
+            } else {
+                article = item
+            }
         }
     }
 
