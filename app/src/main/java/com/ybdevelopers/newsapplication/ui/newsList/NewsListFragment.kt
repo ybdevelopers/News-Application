@@ -56,6 +56,7 @@ class NewsListFragment : Fragment() {
                     val pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition()
 
                     if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                        binding.progress.visibility = View.VISIBLE
                         newsViewModel.newsPage++
                         newsViewModel.getNewsAPI(10)
                     }
@@ -71,11 +72,12 @@ class NewsListFragment : Fragment() {
                 newsListPagination.clear()
                 newsListPagination.addAll(it.articles)
             } else {
+                binding.progress.visibility = View.GONE
                 newsListPagination.addAll(it.articles)
             }
             newsAdapter.addItems(newsListPagination)
-//            binding.rvNewsList.smoothScrollToPosition(it.articles.size - 10)
         })
+        binding.progress.visibility = View.GONE
         binding.rvNewsList.adapter = newsAdapter
 
         newsAdapter.listener = { _, newsPositionData, _ ->
