@@ -29,11 +29,10 @@ class NewsAdapter :
 
     override fun initSortedList() = SortedList(
         Article::class.java, object : SortedListAdapterCallback<Article>(this) {
-            override fun compare(o1: Article, o2: Article) =
-                o1.title.compareTo(o2.title)
+            override fun compare(o1: Article, o2: Article) = 0
 
             override fun areContentsTheSame(oldItem: Article, newItem: Article) =
-                oldItem.title == newItem.title
+                oldItem.publishedAt == newItem.publishedAt
 
             override fun areItemsTheSame(item1: Article, item2: Article) =
                 item1 == item2

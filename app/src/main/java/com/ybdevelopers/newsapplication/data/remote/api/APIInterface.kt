@@ -9,7 +9,8 @@ interface APIInterface {
     @GET("v2/everything")
     suspend fun getAllNews(
         @Query("q") q: String,
-        @Query("apiKey") apiKey: String
+        @Query("apiKey") apiKey: String,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int
     ): Response<NewsListResponse>
-
 }

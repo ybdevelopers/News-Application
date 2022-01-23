@@ -10,12 +10,16 @@ import kotlinx.coroutines.launch
 
 class NewsViewModel(private val apiRepository: APIRepository, private val apiKey: String) :
     ViewModel() {
+    val newsList: LiveData<NewsListResponse> get() = apiRepository.newsListResponse
+    var newsPage = 1
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
-            apiRepository.getNews(apiKey)
-        }
+        getNewsAPI(10)
     }
 
-    val newsList: LiveData<NewsListResponse> get() = apiRepository.newsListResponse
+    fun getNewsAPI(pageSize: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            apiRepository.getNews(apiKey, newsPage, pageSize)
+        }
+    }
 }
