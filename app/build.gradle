@@ -92,10 +92,4 @@ dependencies {
     implementation('com.github.bumptech.glide:okhttp3-integration:4.0.0') {
         exclude group: 'glide-parent'
     }
-
-    //Picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
-
-    //Pagination
-    implementation 'android.arch.paging:runtime:1.0.1'
 }

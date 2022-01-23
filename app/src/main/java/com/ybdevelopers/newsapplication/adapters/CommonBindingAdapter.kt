@@ -2,7 +2,7 @@ package com.ybdevelopers.newsapplication.adapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import com.ybdevelopers.newsapplication.R
 
 class CommonBindingAdapter {
@@ -12,9 +12,10 @@ class CommonBindingAdapter {
         @JvmStatic
         fun loadImage(view: ImageView, imageUrl: String) {
             if (imageUrl.isNotEmpty())
-                Picasso.get().load(imageUrl).into(view)
+                Glide.with(view.context).load(imageUrl).placeholder(R.drawable.bharat_agri)
+                    .into(view)
             else
-                Picasso.get().load(R.drawable.bharat_agri).into(view)
+                Glide.with(view.context).load(R.drawable.bharat_agri).into(view)
         }
     }
 }
